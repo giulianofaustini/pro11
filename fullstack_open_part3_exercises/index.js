@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
+const path = require('path')
 
 const app = express()
 const Person = require('./models/person')
@@ -58,6 +59,8 @@ const persons = [
 
 const howMany = () => persons.length
 
+app.use(express.static(path.join(__dirname, 'client', 'build')))
+
 app.get('/api/persons', (_request, response) => {
   Person.find({}).then((person) => {
     response.json(person)
@@ -77,6 +80,10 @@ app.get('/api/persons/:id', (request, response, next) => {
       }
     })
     .catch((error) => next(error))
+})
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
 })
 
 app.put('/api/persons/:id', (request, response, _next) => {
