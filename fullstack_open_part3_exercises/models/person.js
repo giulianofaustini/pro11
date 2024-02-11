@@ -1,6 +1,8 @@
-const mongoose = require('mongoose');
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-param-reassign */
+const mongoose = require('mongoose')
 
-const url = process.env.MONGODB_URI;
+const url = process.env.MONGODB_URI
 
 const personSchema = new mongoose.Schema({
   name: {
@@ -15,35 +17,31 @@ const personSchema = new mongoose.Schema({
     // Validate phone number format
     validate: {
       validator(v) {
-        return /\d{3}-\d{5,7}/.test(v);
+        return /\d{3}-\d{5,7}/.test(v)
       },
       message: (props) => `${props.value} is not a valid phone number!`,
     },
   },
-});
+})
 
 personSchema.set('toJSON', {
   transform: (document, returnedObject) => {
-    returnedObject.id = returnedObject._id.toString();
-    delete returnedObject._id;
-    delete returnedObject.__v;
+    returnedObject.id = returnedObject._id.toString()
+    delete returnedObject._id
+    delete returnedObject.__v
   },
-});
+})
 
 mongoose
   .connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
-    console.log('Connected to MongoDB');
+    console.log('Connected to MongoDB')
   })
   .catch((error) => {
-    console.error('Error connecting to MongoDB:', error);
-  });
+    console.error('Error connecting to MongoDB:', error)
+  })
 
-module.exports = mongoose.model('Person', personSchema);
-
-
-
-
+module.exports = mongoose.model('Person', personSchema)
 
 // const mongoose = require('mongoose');
 
