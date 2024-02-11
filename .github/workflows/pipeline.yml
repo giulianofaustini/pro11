@@ -18,4 +18,5 @@ jobs:
         working-directory: fullstack_open_part3_exercises
         run: npm install  
       - name: Check style
+        working-directory: fullstack_open_part3_exercises
         run: npm run lint
