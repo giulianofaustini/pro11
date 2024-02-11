@@ -23,7 +23,9 @@ jobs:
       - name: Run build
         working-directory: ./phone-info/phone-app
         run: npm install && npm run build
-      - name: start app
+      - name: Start app
         working-directory: fullstack_open_part3_exercises
         run: npm run start-prod
+        env:
+          MONGODB_URI: ${{secrets.MONGODB_URI}}
         
