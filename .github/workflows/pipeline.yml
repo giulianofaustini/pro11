@@ -10,22 +10,30 @@ jobs:
   simple_deployment_pipeline:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '14' # Adjust the Node.js version as needed
+
       - name: Install dependencies
         working-directory: fullstack_open_part3_exercises
         run: npm install  
+
       - name: Check style
         working-directory: fullstack_open_part3_exercises
         run: npm run lint
+
       - name: Run build
         working-directory: ./phone-info/phone-app
         run: npm install && npm run build
+
       - name: Start app
         working-directory: fullstack_open_part3_exercises
-        run: npm run start-prod
+        run: |
+          npm run start-prod
+          wait-on http://localhost:3001
         env:
-          MONGODB_URI: ${{secrets.MONGODB_URI}}
-        
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
