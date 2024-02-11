@@ -14,7 +14,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Install dependencies 
+      - name: Install dependencies
+        working-directory: fullstack_open_part3_exercises
         run: npm install  
       - name: Check style
         run: npm run lint
