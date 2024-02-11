@@ -20,3 +20,6 @@ jobs:
       - name: Check style
         working-directory: fullstack_open_part3_exercises
         run: npm run lint
+      - name: Run build
+        working-directory: fullstack_open_part3_exercises
+        run: npm run build
