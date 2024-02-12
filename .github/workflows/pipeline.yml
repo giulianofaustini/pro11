@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '14' # Adjust the Node.js version as needed
+          node-version: '14' 
 
       - name: Install dependencies
         working-directory: fullstack_open_part3_exercises
