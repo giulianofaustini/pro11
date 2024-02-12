@@ -6,7 +6,6 @@ on:
       - main
 
 jobs:
-
   simple_deployment_pipeline:
     runs-on: ubuntu-20.04
     steps:
@@ -27,8 +26,10 @@ jobs:
         run: npm run lint
 
       - name: Run build
-        working-directory: ./phone-info/phone-app
-        run: npm install && npm run build
+        working-directory: phone-info/phone-app
+        run: |
+          npm install
+          npm run build
 
       - name: Run Cypress tests
         uses: cypress-io/github-action@v5
@@ -36,9 +37,9 @@ jobs:
           command: npm run cypress:open
           start: npm run start-prod
           wait-on: http://localhost:3001
-    env:
-       MONGODB_URI: ${{ secrets.MONGODB_URI }}
-
+          working-directory: phone-info/phone-app
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
         
           
          
