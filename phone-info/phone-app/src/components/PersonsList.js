@@ -17,7 +17,7 @@ const PersonsList = ({ filteredPersons, onDelete }) => {
         {filteredPersons.map((person) => (
           <li key={person.id}>
             {person.name} {person.number}
-            <button onClick={() => handleDelete(person.id)}>Delete</button>
+            <button id="delete" onClick={() => handleDelete(person.id)}>Delete</button>
           </li>
         ))}
       </ul>

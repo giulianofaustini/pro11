@@ -66,13 +66,13 @@ import PersonService from '../services/PersonService';
     <div>
       <form onSubmit={addNameButton}>
         <div>
-          name: <input value={newName} onChange={handleNameChange} />
+          name: <input id='name' placeholder='add a  name' value={newName} onChange={handleNameChange} />
         </div>
         <div>
-         number: <input value={newNumber} onChange={handleNumberChange}/>
+         number: <input id='number'  value={newNumber} onChange={handleNumberChange}/>
         </div>
         <div>
-          <button type="submit"> - click here to add a new name - </button>
+          <button id='submit'  type="submit"> - click here to add a new name - </button>
         </div>
       </form>
     </div>
