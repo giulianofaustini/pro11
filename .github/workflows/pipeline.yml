@@ -36,6 +36,7 @@ jobs:
        
         with:
           command: npm run cypress:open
+          start: npm start
           working-directory: phone-info/phone-app
         env:
           MONGODB_URI: ${{secrets.MONGODB_URI}}
