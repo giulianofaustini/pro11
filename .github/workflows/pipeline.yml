@@ -49,5 +49,5 @@ jobs:
           wait-on: http://localhost:3000
       - name: Stop servers
         run: |
-         pkill -f 'node index.js'
-         pkill -f 'react-scripts start'  
+          pkill -f 'node index.js' || true
+          pkill -f 'react-scripts start' || true
