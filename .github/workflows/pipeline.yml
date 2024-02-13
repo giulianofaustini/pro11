@@ -37,15 +37,16 @@ jobs:
         env:
           MONGODB_URI: ${{secrets.MONGODB_URI}}
 
+      - name: Wait for backend
+        run: npx wait-on http://localhost:3001
+
       - name: Run Cypress tests for frontend
         uses: cypress-io/github-action@v5
        
         with:
           command: npm run cypress:open &
           working-directory: phone-info/phone-app
-        env:
-          MONGODB_URI: ${{secrets.MONGODB_URI}}
-          wait-on: http://localhost:3001 &
+         
       - name: Stop servers
         run: |
           pkill -f 'node index.js' || true
