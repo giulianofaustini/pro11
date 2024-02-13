@@ -15,28 +15,34 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '14'
+          node-version: '14' 
 
-      # Backend setup and tests
-      - name: "Backend: Install dependencies"
+      - name: Install dependencies
         working-directory: fullstack_open_part3_exercises
-        run: npm install
+        run: npm install  
 
-      - name: "Backend: Start server for tests"
+      - name: Check style
         working-directory: fullstack_open_part3_exercises
-        run: npm run start:test
+        run: npm run lint
 
-      # Frontend setup and tests with Cypress
-      - name: "Frontend: Install dependencies"
+      - name: Run build
         working-directory: phone-info/phone-app
-        run: npm install
+        run: |
+          npm install
+          npm run build
 
-      - name: "Frontend: Run Cypress tests"
+      - name: Run Cypress tests
         uses: cypress-io/github-action@v5
         with:
           command: npm run cypress:open
-          start: npm run start-prod
-          wait-on: http://localhost:3001
           working-directory: phone-info/phone-app
+
+      - name: Run app
+        run: npm run start:test
+        working-directory: fullstack_open_part3_exercises
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          wait-on: http://localhost:3001
+        
+          
+         
