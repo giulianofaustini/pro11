@@ -27,7 +27,7 @@ jobs:
 
       - name: Start backend server
         working-directory: fullstack_open_part3_exercises
-        run: npm run dev
+        run: npm run start:test
         env:
           MONGODB_URI: ${{secrets.MONGODB_URI}}
           wait-on: http://localhost:3001
