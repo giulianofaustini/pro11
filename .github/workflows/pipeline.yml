@@ -35,11 +35,8 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           command: npm run cypress:open
-          working-directory: phone-info/phone-app
-
-      - name: Run app
-        run: npm run start:test
-        working-directory: fullstack_open_part3_exercises
+          start: npm run start:test
+          working-directory: phone-info/phone-app && fullstack_open_part3_exercises
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           wait-on: http://localhost:3001
