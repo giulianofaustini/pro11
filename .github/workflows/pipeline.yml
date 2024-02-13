@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  simple_deployment_pipeline:
+  run_tests:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout code
@@ -17,29 +17,26 @@ jobs:
         with:
           node-version: '14' 
 
-      - name: Install dependencies
+      - name: Install dependencies for backend
         working-directory: fullstack_open_part3_exercises
         run: npm install  
 
-      - name: Check style
+      - name: Check style for backend
         working-directory: fullstack_open_part3_exercises
         run: npm run lint
 
-      - name: Run build
-        working-directory: phone-info/phone-app
-        run: |
-          npm install
-          npm run build
+      - name: Run tests
+        working-directory: fullstack_open_part3_exercises
+        run: npm run dev
+        env:
+          MONGODB_URI: ${{secrets.MONGODB_URI}}
+          wait-on: http://localhost:3001
 
-      - name: Run Cypress tests
+      - name: Run Cypress tests for frontend
         uses: cypress-io/github-action@v5
         with:
           command: npm run cypress:open
-          start: npm run start:test
-          working-directory: phone-info/phone-app && fullstack_open_part3_exercises
+          start: npm run start
         env:
-          MONGODB_URI: ${{ secrets.MONGODB_URI }}
-          wait-on: http://localhost:3001
-        
-          
-         
+          MONGODB_URI: ${{secrets.MONGODB_URI}}
+          wait-on: http://localhost:3000
