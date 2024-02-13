@@ -36,9 +36,7 @@ jobs:
         run: npm run start:test &
         env:
           MONGODB_URI: ${{secrets.MONGODB_URI}}
-
-      - name: Wait for backend
-        run: npx wait-on http://localhost:3001
+          wait-on: http://localhost:3001
 
       - name: Run Cypress tests for frontend
         uses: cypress-io/github-action@v5
