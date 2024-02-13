@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '14' 
+          node-version: '18' 
 
       - name: Install dependencies for backend
         working-directory: fullstack_open_part3_exercises
@@ -33,7 +33,9 @@ jobs:
           wait-on: http://localhost:3001
           
       - name: Wait for server to start
-        run: sleep 5   
+        run: |
+          npx wait-on http://localhost:3001
+          echo "Server is ready!"
 
       - name: Run Cypress tests for frontend
         uses: cypress-io/github-action@v5
