@@ -42,11 +42,11 @@ jobs:
        
         with:
           command: npm run cypress:open
-          start: npm start &&
+          start: npm start &
           working-directory: phone-info/phone-app
         env:
           MONGODB_URI: ${{secrets.MONGODB_URI}}
-          wait-on: http://localhost:3000
+          wait-on: http://localhost:3000 &
       - name: Stop servers
         run: |
           pkill -f 'node index.js' || true
