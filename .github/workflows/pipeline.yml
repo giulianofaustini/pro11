@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '14' 
+          node-version: '18' 
 
       - name: Install dependencies for backend
         working-directory: fullstack_open_part3_exercises
@@ -30,6 +30,12 @@ jobs:
         run: |
           npm install
           npm run build
+
+      - name: start backend
+        working-directory: fullstack_open_part3_exercises
+        run: npm start &
+        env:
+          MONGODB_URI: ${{secrets.MONGODB_URI}}
 
       - name: Run Cypress tests for frontend
         uses: cypress-io/github-action@v5
