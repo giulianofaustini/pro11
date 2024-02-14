@@ -33,7 +33,7 @@ jobs:
 
       - name: start backend
         working-directory: fullstack_open_part3_exercises
-        run: npm run start:test
+        run: npm run dev &
         env:
           MONGODB_URI: ${{secrets.MONGODB_URI}}
          
@@ -41,7 +41,8 @@ jobs:
         uses: cypress-io/github-action@v5
        
         with:
-          command: npm run cypress:open 
+          command: npm run cypress:open
+          start: npm start &
           working-directory: phone-info/phone-app
          
       - name: Stop servers

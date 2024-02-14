@@ -3,7 +3,7 @@
 
 describe('template spec', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3001/' , { failOnStatusCode: false })
+    cy.visit('http://localhost:3000/' , { failOnStatusCode: false })
     cy.contains('Phonebook')
     cy.contains('Add a new name and number to the list:')
   })
