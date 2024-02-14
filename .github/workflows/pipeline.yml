@@ -37,7 +37,6 @@ jobs:
         env:
           MONGODB_URI: ${{secrets.MONGODB_URI}}
          
-
       - name: Run Cypress tests for frontend
         uses: cypress-io/github-action@v5
        
