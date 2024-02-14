@@ -42,7 +42,7 @@ jobs:
         uses: cypress-io/github-action@v5
        
         with:
-          command: npm run cypress:open &
+          command: npm run cypress:open 
           working-directory: phone-info/phone-app
          
       - name: Stop servers
