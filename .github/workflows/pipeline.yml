@@ -33,7 +33,7 @@ jobs:
 
       - name: start backend
         working-directory: fullstack_open_part3_exercises
-        run: npm run start:test &&
+        run: npm run start:test
         env:
           MONGODB_URI: ${{secrets.MONGODB_URI}}
          
