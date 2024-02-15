@@ -119,6 +119,10 @@ app.get('/info', (_request, response) => {
     .end()
 })
 
+app.get('/health', (req, res) => {
+  res.send('ok')
+})
+
 // app.delete("/api/persons/:id", (request, response) => {
 //   const id = Number(request.params.id);
 //   const personToDelete = persons.find((person) => person.id === id);
